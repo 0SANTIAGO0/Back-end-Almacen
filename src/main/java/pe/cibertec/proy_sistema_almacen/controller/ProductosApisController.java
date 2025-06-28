@@ -11,6 +11,8 @@ import pe.cibertec.proy_sistema_almacen.dto.ProveedorListarDto;
 import pe.cibertec.proy_sistema_almacen.service.MaintenanceProductoService;
 
 import java.util.List;
+import java.util.Optional;
+
 @CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/productos")
@@ -21,7 +23,7 @@ public class ProductosApisController {
     private MaintenanceProductoService productoService;
 
     // GET: Listar productos
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<List<ProductoListarDto>> listarProductos() throws Exception {
         List<ProductoListarDto> productos = productoService.listarProductos();
         return ResponseEntity.ok(productos);
@@ -46,7 +48,7 @@ public class ProductosApisController {
     public ResponseEntity<Void> eliminarProducto(@PathVariable Integer id) throws Exception {
         productoService.borrarProductoId(id);
         return ResponseEntity.noContent().build();
-    }
+    }*/
 
     // GET: Obtener un producto por ID (opcional pero recomendado)ProductoListarDto
     //@GetMapping("/{id}")
@@ -54,4 +56,41 @@ public class ProductosApisController {
     //     Optional<ProveedorListarDto> producto = productoService.listarProductoId(id);
       // return ResponseEntity.ok(producto);
     //}
+
+    @GetMapping
+    public ResponseEntity<List<ProductoListarDto>> listarProductos() throws Exception {
+        List<ProductoListarDto> productos = productoService.listarProductos();
+        return ResponseEntity.ok(productos);
+    }
+
+    // GET: Buscar producto por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductoListarDto> buscarProductoPorId(@PathVariable int id) throws Exception {
+        Optional<ProductoListarDto> producto = productoService.listarProductoId(id);
+        return producto.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+
+    // POST: Registrar producto
+    @PostMapping
+    public ResponseEntity<Void> registrarProducto(@RequestBody ProductoCrearDto dto) throws Exception {
+        productoService.agregarProducto(dto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    // PUT: Editar producto
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> editarProducto(@PathVariable Integer id, @RequestBody ProductoCrearDto dto) throws Exception {
+        productoService.actualizarProducto(dto);
+        return ResponseEntity.ok().build();
+    }
+
+    // DELETE: Eliminar producto
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> eliminarProducto(@PathVariable Integer id) throws Exception {
+        productoService.borrarProductoId(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

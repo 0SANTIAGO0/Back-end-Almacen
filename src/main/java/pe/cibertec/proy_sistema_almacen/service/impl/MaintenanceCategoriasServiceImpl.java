@@ -16,9 +16,9 @@ import java.util.Optional;
 public class MaintenanceCategoriasServiceImpl implements MaintenanceCategoriasService {
 
     @Autowired
-    private CategoriasRepository categoriasRepository;
+    private CategoriasRepository categoriaRepository;
 
-    @Override
+    /*@Override
     public List<CategoriaListarDto> listarCategorias() throws Exception {
         List<CategoriaListarDto> categoriasDto = new ArrayList<>();
         categoriasRepository.findAll().forEach(cat -> {
@@ -66,4 +66,64 @@ public class MaintenanceCategoriasServiceImpl implements MaintenanceCategoriasSe
             return true;
         }).orElse(false);
     }
+    */
+
+    @Override
+    public List<Categoria> listarCategorias() throws Exception {
+        List<Categoria> categorias = new ArrayList<>();
+        categoriaRepository.findAll().forEach(c-> categorias.add(new Categoria(
+                c.getIdCategoria(),
+                c.getNombreCategoria(),
+                c.getDescripcion(),
+                c.getEstado()
+        )));
+        return categorias;
+    }
+
+    @Override
+    public Optional<Categoria> listarCategoriaId(int id) {
+        return categoriaRepository.findById(id).map(c -> new Categoria(
+                c.getIdCategoria(),
+                c.getNombreCategoria(),
+                c.getDescripcion(),
+                c.getEstado()
+        ));
+    }
+
+    @Override
+    public boolean agregarCategoria(Categoria categoria) {
+        Categoria c = new Categoria(
+                categoria.getIdCategoria(),
+                categoria.getNombreCategoria(),
+                categoria.getDescripcion(),
+                categoria.getEstado()
+        );
+        categoriaRepository.save(c);
+        return true;
+    }
+
+    @Override
+    public boolean actualizarCategoria(Categoria categoria) {
+        Optional<Categoria> optionalCategoria = categoriaRepository.findById(categoria.getIdCategoria());
+        if (optionalCategoria.isPresent()) {
+            Categoria c = optionalCategoria.get();
+            c.setNombreCategoria(categoria.getNombreCategoria());
+            c.setDescripcion(categoria.getDescripcion());
+            c.setEstado(categoria.getEstado());
+            categoriaRepository.save(c);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean borrarCategoriaId(int id) {
+        Optional<Categoria> optionalCategoria = categoriaRepository.findById(id);
+        if (optionalCategoria.isPresent()) {
+            categoriaRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
 }
