@@ -8,5 +8,7 @@ public record ProductoListarDto(
         String nombreCategoria,
         Integer stockActual,
         Integer stockMinimo,
-        String estado
+        String estado,
+        Integer idMarca,
+        Integer idCategoria
 ) {}

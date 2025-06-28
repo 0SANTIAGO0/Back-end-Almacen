@@ -40,7 +40,9 @@ public class MaintenanceProductoServiceImpl implements MaintenanceProductoServic
                 p.getCategoria().getNombreCategoria(),
                 p.getStockActual(),
                 p.getStockMinimo(),
-                p.getEstado()
+                p.getEstado(),
+                p.getMarca().getIdMarca(),
+                p.getCategoria().getIdCategoria()
         )));
         return dtos;
     }
@@ -55,7 +57,9 @@ public class MaintenanceProductoServiceImpl implements MaintenanceProductoServic
                 p.getCategoria().getNombreCategoria(),
                 p.getStockActual(),
                 p.getStockMinimo(),
-                p.getEstado()
+                p.getEstado(),
+                p.getMarca().getIdMarca(),
+                p.getCategoria().getIdCategoria()
         ));
     }
 
