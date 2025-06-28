@@ -28,7 +28,7 @@ public class Usuarios { // Mantengo el nombre de tu clase como 'Usuarios'
     @Column(name = "correo", unique = true, nullable = false) // Mapea a la columna 'correo'
     private String correo;
 
-    @Column(name = "contraseña", nullable = false) // ¡CORRECCIÓN CLAVE AQUÍ! Mapea a 'contraseña' con 'ñ'
+    @Column(name = "contrasenia", nullable = false) // ¡CORRECCIÓN CLAVE AQUÍ! Mapea a 'contraseña' con 'ñ'
     private String contrasenia; // El nombre del campo en Java sigue siendo 'contrasenia'
 
     @Column(name = "rol", nullable = false) // Mapea a la columna 'rol'
