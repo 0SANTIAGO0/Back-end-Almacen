@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity(name = "categorias")
+@Entity
+@Table(name = "categorias")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,10 +15,11 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCategoria;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "nombre_categoria", nullable = false, unique = true)
     private String nombreCategoria;
 
     private String descripcion;
 
+    @Column(name = "estado")
     private String estado = "Activo";
 }

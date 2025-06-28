@@ -4,8 +4,11 @@ public record ProductoListarDto(
         Integer idProducto,
         String nombreProducto,
         String descripcion,
+        String nombreMarca,
+        String nombreCategoria,
         Integer stockActual,
         Integer stockMinimo,
         String estado,
-        Integer codigoPedido) {
-}
+        Integer idMarca,
+        Integer idCategoria
+) {}

@@ -4,8 +4,9 @@ public record ProductoCrearDto(
         Integer idProducto,
         String nombreProducto,
         String descripcion,
+        Integer idMarca,
+        Integer idCategoria,
         Integer stockActual,
         Integer stockMinimo,
-        String estado,
-        Integer codigoPedido) {
-}
+        String estado
+) {}

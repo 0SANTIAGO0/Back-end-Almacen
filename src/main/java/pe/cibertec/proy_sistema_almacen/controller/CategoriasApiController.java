@@ -5,6 +5,7 @@ import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import pe.cibertec.proy_sistema_almacen.dto.CategoriaCrearDto;
 import pe.cibertec.proy_sistema_almacen.dto.CategoriaListarDto;
+import pe.cibertec.proy_sistema_almacen.entity.Categoria;
 import pe.cibertec.proy_sistema_almacen.service.MaintenanceCategoriasService;
 
 import java.util.List;
@@ -18,25 +19,30 @@ public class CategoriasApiController {
     @Autowired
     private MaintenanceCategoriasService service;
 
-    @GetMapping
+    /*@GetMapping
     public ResponseEntity<List<CategoriaListarDto>> listar() throws Exception {
         return ResponseEntity.ok(service.listarCategorias());
+    }*/
+    @GetMapping
+    public ResponseEntity<List<Categoria>> listarCategorias() throws Exception {
+        List<Categoria> categorias = service.listarCategorias();
+        return ResponseEntity.ok(categorias);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoriaListarDto> listarPorId(@PathVariable int id) throws Exception {
-        return service.listarIdCategoria(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<Categoria> listarPorId(@PathVariable int id) throws Exception {
+        return service.listarCategoriaId(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Void> guardar(@RequestBody CategoriaCrearDto dto) throws Exception {
+    public ResponseEntity<Void> guardar(@RequestBody Categoria dto) throws Exception {
         service.agregarCategoria(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Void> actualizar(@PathVariable int id, @RequestBody CategoriaCrearDto dto) throws Exception {
-        CategoriaCrearDto actualizado = new CategoriaCrearDto(id, dto.nombreCategoria(), dto.descripcion(), dto.estado());
+        Categoria actualizado = new Categoria(id, dto.nombreCategoria(), dto.descripcion(), dto.estado());
         boolean actualizadoOk = service.actualizarCategoria(actualizado);
         return actualizadoOk ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
     }

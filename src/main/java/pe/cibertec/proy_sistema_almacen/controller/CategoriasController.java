@@ -34,7 +34,7 @@ public class CategoriasController {
     }
 
     @PostMapping("/registrar")
-    public String guardar(@ModelAttribute("categoria") CategoriaCrearDto dto) throws Exception {
+    public String guardar(@ModelAttribute("categoria") Categoria dto) throws Exception {
         service.agregarCategoria(dto);
         return "redirect:/categorias/listar";
     }
@@ -53,7 +53,7 @@ public class CategoriasController {
     }
 
     @PostMapping("/editar")
-    public String actualizar(@ModelAttribute("categoria") CategoriaCrearDto dto) throws Exception {
+    public String actualizar(@ModelAttribute("categoria") Categoria dto) throws Exception {
         service.actualizarCategoria(dto);
         return "redirect:/categorias/listar";
     }
