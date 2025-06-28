@@ -70,7 +70,9 @@ public class MaintenanceMovimientoStockServiceImp implements MaintenanceMovimien
                         m.getCantidad(),
                         m.getFechaMovimiento(),
                         m.getRealizadoPor().getNombreUsuario(),
-                        m.getObservacion()
+                        m.getObservacion(),
+                        m.getRealizadoPor().getIdUsuario(),
+                        m.getProducto().getIdProducto()
                 ))
                 .toList();
     }

@@ -9,6 +9,7 @@ import pe.cibertec.proy_sistema_almacen.service.MaintenanceMovimientoStockServic
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/movimientos")
 public class MovimientosStockApiController {

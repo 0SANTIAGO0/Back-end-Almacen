@@ -10,5 +10,8 @@ public record MovimientoStockResponseDto(Integer idMovimiento,
                                          Integer cantidad,
                                          LocalDateTime fechaMovimiento,
                                          String realizadoPor,
-                                         String observacion) {
+                                         String observacion,
+                                         Integer productoId,
+                                         Integer usuarioId
+) {
 }
