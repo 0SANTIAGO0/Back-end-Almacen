@@ -1,6 +1,7 @@
 package pe.cibertec.proy_sistema_almacen.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.cibertec.proy_sistema_almacen.dto.LoginResponseDto;
 import pe.cibertec.proy_sistema_almacen.dto.UsuariosCrearDto;
@@ -18,6 +19,9 @@ public class MaintenanceUsuariosServiceImpl implements MaintenanceUsuariosServic
 
     @Autowired
     private UsuariosRepository usuariosRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -68,7 +72,8 @@ public class MaintenanceUsuariosServiceImpl implements MaintenanceUsuariosServic
 
             usu.setNombreUsuario(usuariosCrearDto.nombreUsuario());
             usu.setCorreo(usuariosCrearDto.correo());
-            usu.setContrasenia(usuariosCrearDto.contrasenia());
+            // ✅ Encriptar la contraseña antes de guardar
+            usu.setContrasenia(passwordEncoder.encode(usuariosCrearDto.contrasenia()));
             usu.setRol(usuariosCrearDto.rol());
             usu.setEstado(usuariosCrearDto.estado());
 
@@ -86,7 +91,8 @@ public class MaintenanceUsuariosServiceImpl implements MaintenanceUsuariosServic
 
             usu.setNombreUsuario(usuariosCrearDto.nombreUsuario());
             usu.setCorreo(usuariosCrearDto.correo());
-            usu.setContrasenia(usuariosCrearDto.contrasenia());
+            // ✅ Encriptar la contraseña actualizadaAdd commentMore actions
+            usu.setContrasenia(passwordEncoder.encode(usuariosCrearDto.contrasenia()));
             usu.setRol(usuariosCrearDto.rol());
             usu.setEstado(usuariosCrearDto.estado());
 
@@ -108,6 +114,25 @@ public class MaintenanceUsuariosServiceImpl implements MaintenanceUsuariosServic
     }
 
     @Override
+    public Optional<LoginResponseDto> loginUsuario(String correo, String contrasenia) {
+        Optional<Usuarios> usuarioOpt = usuariosRepository.findByCorreo(correo);
+        if (usuarioOpt.isPresent()) {
+            Usuarios usuario = usuarioOpt.get();
+
+            // ✅ Validar con PasswordEncoder
+            if (passwordEncoder.matches(contrasenia, usuario.getContrasenia())) {
+                LoginResponseDto dto = new LoginResponseDto(
+                        usuario.getNombreUsuario(),
+                        usuario.getCorreo(),
+                        usuario.getRol()
+                );
+                return Optional.of(dto);
+            }
+        }
+        return Optional.empty();
+    }
+
+    /*@Override
     public Optional<LoginResponseDto> loginUsuario(String usuario, String contrasenia) {
         Optional<Usuarios> usuarioOpt = usuariosRepository.loginUsuario(usuario, contrasenia);
 
@@ -122,6 +147,6 @@ public class MaintenanceUsuariosServiceImpl implements MaintenanceUsuariosServic
         }
 
         return Optional.empty();
-    }
+    }*/
 
 }
