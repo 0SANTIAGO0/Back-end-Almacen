@@ -18,6 +18,7 @@ public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
 
+
     public SecurityConfig(JwtAuthFilter jwtAuthFilter) {
         this.jwtAuthFilter = jwtAuthFilter;
     }
@@ -30,7 +31,20 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/api/usuarios/login",
-                                "/api/usuarios",  //Permite el registro sin token
+                                "/api/usuarios",
+                                "/api/usuarios/{id}",
+                                "/api/marcas",
+                                "/api/marcas/{id}",
+                                "/api/categorias",
+                                "/api/categorias/{id}",
+                                "/api/productos",
+                                "/api/productos/{id}",
+                                "/api/movimientos",
+                                "/api/movimientos/{id}",
+                                "/api/pedidos",
+                                "/api/pedidos/{id}",
+                                "/api/proveedores",
+                                "/api/proveedores/{id}",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**"
                         ).permitAll()
