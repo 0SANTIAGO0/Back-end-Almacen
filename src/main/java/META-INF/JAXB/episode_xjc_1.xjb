@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="3.0" xmlns="https://jakarta.ee/xml/ns/jaxb">
+  <!--
+
+Este archivo ha sido generado por Eclipse Implementation of JAXB v3.0.0 
+Visite https://eclipse-ee4j.github.io/jaxb-ri 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2025.07.01 a las 01:19:08 PM PET 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://pe.cibertec/ws/producto">
+    <schemaBindings map="false">
+      <package name="pe.cibertec.proy_sistema_almacen.ws.producto"/>
+    </schemaBindings>
+    <bindings scd="tns:ProductoCrearRequest">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.producto.ProductoCrearRequest"/>
+    </bindings>
+    <bindings scd="~tns:Producto">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.producto.Producto"/>
+    </bindings>
+    <bindings scd="tns:ProductoCrearResponse">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.producto.ProductoCrearResponse"/>
+    </bindings>
+    <bindings scd="tns:ProductoListarResponse">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.producto.ProductoListarResponse"/>
+    </bindings>
+    <bindings scd="tns:ProductoModificarRequest">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.producto.ProductoModificarRequest"/>
+    </bindings>
+    <bindings scd="tns:ProductoModificarResponse">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.producto.ProductoModificarResponse"/>
+    </bindings>
+    <bindings scd="tns:ProductoEliminarRequest">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.producto.ProductoEliminarRequest"/>
+    </bindings>
+    <bindings scd="tns:ProductoEliminarResponse">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.producto.ProductoEliminarResponse"/>
+    </bindings>
+  </bindings>
+</bindings>
+

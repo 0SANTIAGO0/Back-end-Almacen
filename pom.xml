@@ -117,6 +117,37 @@
 			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 		</dependency>
 
+		<!-- Soporte para XML con Jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency>
+
+		<!-- JAXB para anotaciones como @XmlRootElement -->
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>4.0.0</version>
+		</dependency>
+
+		<!-- Para SOAP -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>4.0.3</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
@@ -145,6 +176,34 @@
 					</excludes>
 				</configuration>
 			</plugin>
+
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<phase>generate-sources</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<sources>
+<!--						<source>src/main/resources/categoria.xsd</source>-->
+						<source>src/main/resources/producto.xsd</source>
+					</sources>
+					<outputDirectory>src/main/java</outputDirectory>
+<!--					<packageName>pe.cibertec.proy_sistema_almacen.ws.categoria</packageName>-->
+					<packageName>pe.cibertec.proy_sistema_almacen.ws.producto</packageName>
+					<clearOutputDir>false</clearOutputDir>
+				</configuration>
+			</plugin>
+
+
 		</plugins>
 	</build>
 

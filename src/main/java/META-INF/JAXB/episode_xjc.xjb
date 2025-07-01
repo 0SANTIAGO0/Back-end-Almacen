@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="3.0" xmlns="https://jakarta.ee/xml/ns/jaxb">
+  <!--
+
+Este archivo ha sido generado por Eclipse Implementation of JAXB v3.0.0 
+Visite https://eclipse-ee4j.github.io/jaxb-ri 
+Todas las modificaciones realizadas en este archivo se perderán si se vuelve a compilar el esquema de origen. 
+Generado el: 2025.07.01 a las 12:09:44 PM PET 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://pe.cibertec/ws/categoria">
+    <schemaBindings map="false">
+      <package name="pe.cibertec.proy_sistema_almacen.ws.categoria"/>
+    </schemaBindings>
+    <bindings scd="tns:CategoriaCrearRequest">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.categoria.CategoriaCrearRequest"/>
+    </bindings>
+    <bindings scd="~tns:Categoria">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.categoria.Categoria"/>
+    </bindings>
+    <bindings scd="tns:CategoriaCrearResponse">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.categoria.CategoriaCrearResponse"/>
+    </bindings>
+    <bindings scd="tns:CategoriaListarResponse">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.categoria.CategoriaListarResponse"/>
+    </bindings>
+    <bindings scd="tns:CategoriaModificarRequest">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.categoria.CategoriaModificarRequest"/>
+    </bindings>
+    <bindings scd="tns:CategoriaModificarResponse">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.categoria.CategoriaModificarResponse"/>
+    </bindings>
+    <bindings scd="tns:CategoriaEliminarRequest">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.categoria.CategoriaEliminarRequest"/>
+    </bindings>
+    <bindings scd="tns:CategoriaEliminarResponse">
+      <class ref="pe.cibertec.proy_sistema_almacen.ws.categoria.CategoriaEliminarResponse"/>
+    </bindings>
+  </bindings>
+</bindings>
+

@@ -17,57 +17,9 @@ public class MaintenanceCategoriasServiceImpl implements MaintenanceCategoriasSe
 
     @Autowired
     private CategoriasRepository categoriaRepository;
-
-    /*@Override
-    public List<CategoriaListarDto> listarCategorias() throws Exception {
-        List<CategoriaListarDto> categoriasDto = new ArrayList<>();
-        categoriasRepository.findAll().forEach(cat -> {
-            categoriasDto.add(new CategoriaListarDto(
-                    cat.getIdCategoria(),
-                    cat.getNombreCategoria(),
-                    cat.getDescripcion(),
-                    cat.getEstado()
-            ));
-        });
-        return categoriasDto;
-    }
-
-    @Override
-    public Optional<CategoriaListarDto> listarIdCategoria(int id) throws Exception {
-        return categoriasRepository.findById(id).map(cat ->
-                new CategoriaListarDto(cat.getIdCategoria(), cat.getNombreCategoria(), cat.getDescripcion(), cat.getEstado())
-        );
-    }
-
-    @Override
-    public boolean agregarCategoria(CategoriaCrearDto dto) throws Exception {
-        Categoria cat = new Categoria(null, dto.nombreCategoria(), dto.descripcion(), dto.estado());
-        categoriasRepository.save(cat);
-        return true;
-    }
-
-    @Override
-    public boolean actualizarCategoria(CategoriaCrearDto dto) throws Exception {
-        Optional<Categoria> optional = categoriasRepository.findById(dto.idCategoria());
-        return optional.map(cat -> {
-            cat.setNombreCategoria(dto.nombreCategoria());
-            cat.setDescripcion(dto.descripcion());
-            cat.setEstado(dto.estado());
-            categoriasRepository.save(cat);
-            return true;
-        }).orElse(false);
-    }
-
-    @Override
-    public boolean borrarCategoriaId(int id) throws Exception {
-        Optional<Categoria> optional = categoriasRepository.findById(id);
-        return optional.map(cat -> {
-            categoriasRepository.delete(cat);
-            return true;
-        }).orElse(false);
-    }
-    */
-
+    @Autowired
+    private CategoriasRepository categoriasRepository;
+    /*
     @Override
     public List<Categoria> listarCategorias() throws Exception {
         List<Categoria> categorias = new ArrayList<>();
@@ -124,6 +76,55 @@ public class MaintenanceCategoriasServiceImpl implements MaintenanceCategoriasSe
             return true;
         }
         return false;
+    }*/
+
+    @Override
+    public List<CategoriaListarDto> listarCategorias() throws Exception {
+        List<CategoriaListarDto> categoriasDto = new ArrayList<>();
+        categoriasRepository.findAll().forEach(cat -> {
+            categoriasDto.add(new CategoriaListarDto(
+                    cat.getIdCategoria(),
+                    cat.getNombreCategoria(),
+                    cat.getDescripcion(),
+                    cat.getEstado()
+            ));
+        });
+        return categoriasDto;
+    }
+
+    @Override
+    public Optional<CategoriaListarDto> listarIdCategoria(int id) throws Exception {
+        return categoriasRepository.findById(id).map(cat ->
+                new CategoriaListarDto(cat.getIdCategoria(), cat.getNombreCategoria(), cat.getDescripcion(), cat.getEstado())//se modifico para xml
+        );
+    }
+
+    @Override
+    public boolean agregarCategoria(CategoriaCrearDto dto) throws Exception {
+        Categoria cat = new Categoria(null, dto.getNombreCategoria(), dto.getDescripcion(), dto.getEstado());//se modifico para xml
+        categoriasRepository.save(cat);
+        return true;
+    }
+
+    @Override
+    public boolean actualizarCategoria(CategoriaCrearDto dto) throws Exception {
+        Optional<Categoria> optional = categoriasRepository.findById(dto.getIdCategoria());//se modifico para xml
+        return optional.map(cat -> {
+            cat.setNombreCategoria(dto.getNombreCategoria());//se modifico para xml
+            cat.setDescripcion(dto.getDescripcion()); //se modifico para xml
+            cat.setEstado(dto.getEstado());//se modifico para xml
+            categoriasRepository.save(cat);
+            return true;
+        }).orElse(false);
+    }
+
+    @Override
+    public boolean borrarCategoriaId(int id) throws Exception {
+        Optional<Categoria> optional = categoriasRepository.findById(id);
+        return optional.map(cat -> {
+            categoriasRepository.delete(cat);
+            return true;
+        }).orElse(false);
     }
 
 }

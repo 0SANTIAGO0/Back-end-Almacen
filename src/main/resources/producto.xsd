@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://pe.cibertec/ws/producto"
+           xmlns:tns="http://pe.cibertec/ws/producto"
+           elementFormDefault="qualified">
+
+    <!-- Tipo complejo basado en tu DTO -->
+    <xs:complexType name="Producto">
+        <xs:sequence>
+            <xs:element name="idProducto" type="xs:int" minOccurs="0"/>
+            <xs:element name="nombreProducto" type="xs:string"/>
+            <xs:element name="descripcion" type="xs:string"/>
+            <xs:element name="idMarca" type="xs:int" minOccurs="0"/>
+            <xs:element name="idCategoria" type="xs:int" minOccurs="0"/>
+            <xs:element name="stockActual" type="xs:int" minOccurs="0"/>
+            <xs:element name="stockMinimo" type="xs:int" minOccurs="0"/>
+            <xs:element name="estado" type="xs:string"/>
+            <xs:element name="nombreMarca" type="xs:string" minOccurs="0"/>
+            <xs:element name="nombreCategoria" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--
+         OPERACIONES
+    -->
+
+    <!-- Crear -->
+    <xs:element name="ProductoCrearRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="producto" type="tns:Producto"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ProductoCrearResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="mensaje" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Listar -->
+    <xs:element name="ProductoListarRequest" type="xs:anyType"/>
+
+    <xs:element name="ProductoListarResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="producto" type="tns:Producto" maxOccurs="unbounded" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Modificar -->
+    <xs:element name="ProductoModificarRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="producto" type="tns:Producto"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ProductoModificarResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="mensaje" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Eliminar -->
+    <xs:element name="ProductoEliminarRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="idProducto" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ProductoEliminarResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="mensaje" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

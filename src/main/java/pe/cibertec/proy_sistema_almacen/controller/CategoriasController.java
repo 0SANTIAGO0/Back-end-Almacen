@@ -14,7 +14,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/categorias")
 public class CategoriasController {
-
+/*
     @Autowired
     MaintenanceCategoriasService service;
 
@@ -63,4 +63,6 @@ public class CategoriasController {
         service.borrarCategoriaId(id);
         return "redirect:/categorias/listar";
     }
+
+ */
 }

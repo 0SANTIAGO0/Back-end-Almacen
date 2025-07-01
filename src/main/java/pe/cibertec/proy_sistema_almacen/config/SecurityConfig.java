@@ -35,7 +35,7 @@ public class SecurityConfig {
                                 "/api/usuarios/{id}",
                                 "/api/marcas",
                                 "/api/marcas/{id}",
-                                "/api/categorias",
+                                "/api/categorias/**",
                                 "/api/categorias/{id}",
                                 "/api/productos",
                                 "/api/productos/{id}",
@@ -46,6 +46,7 @@ public class SecurityConfig {
                                 "/api/proveedores",
                                 "/api/proveedores/{id}",
                                 "/api/reportes/**",
+                                "/ws/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**"
                         ).permitAll()
