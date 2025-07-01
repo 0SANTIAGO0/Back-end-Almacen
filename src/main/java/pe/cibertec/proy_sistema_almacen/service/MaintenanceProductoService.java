@@ -1,6 +1,7 @@
 // MaintenanceProductoService.java
 package pe.cibertec.proy_sistema_almacen.service;
 
+import pe.cibertec.proy_sistema_almacen.dto.ProductoBajoStockDTO;
 import pe.cibertec.proy_sistema_almacen.dto.ProductoCrearDto;
 import pe.cibertec.proy_sistema_almacen.dto.ProductoListarDto;
 
@@ -13,4 +14,7 @@ public interface MaintenanceProductoService {
     boolean agregarProducto(ProductoCrearDto producto) throws Exception;
     boolean actualizarProducto(ProductoCrearDto producto) throws Exception;
     boolean borrarProductoId(int id) throws Exception;
+
+
+    List<ProductoBajoStockDTO> obtenerProductosBajoStock();
 }

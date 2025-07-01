@@ -45,6 +45,7 @@ public class SecurityConfig {
                                 "/api/pedidos/{id}",
                                 "/api/proveedores",
                                 "/api/proveedores/{id}",
+                                "/api/reportes/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**"
                         ).permitAll()

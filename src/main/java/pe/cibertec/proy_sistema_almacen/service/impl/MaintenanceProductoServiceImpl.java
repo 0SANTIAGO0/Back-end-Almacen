@@ -3,6 +3,7 @@ package pe.cibertec.proy_sistema_almacen.service.impl;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pe.cibertec.proy_sistema_almacen.dto.ProductoBajoStockDTO;
 import pe.cibertec.proy_sistema_almacen.dto.ProductoCrearDto;
 import pe.cibertec.proy_sistema_almacen.dto.ProductoListarDto;
 import pe.cibertec.proy_sistema_almacen.entity.Categoria;
@@ -125,6 +126,11 @@ public class MaintenanceProductoServiceImpl implements MaintenanceProductoServic
             productoRepository.delete(p);
             return true;
         }).orElse(false);
+    }
+
+    @Override
+    public List<ProductoBajoStockDTO> obtenerProductosBajoStock() {
+        return productoRepository.findProductosBajoStock();
     }
 
     /*@Override
