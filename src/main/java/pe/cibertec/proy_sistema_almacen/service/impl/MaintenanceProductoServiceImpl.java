@@ -3,6 +3,7 @@ package pe.cibertec.proy_sistema_almacen.service.impl;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pe.cibertec.proy_sistema_almacen.dto.ProductoBajoStockDTO;
 import pe.cibertec.proy_sistema_almacen.dto.ProductoCrearDto;
 import pe.cibertec.proy_sistema_almacen.dto.ProductoListarDto;
@@ -31,6 +32,7 @@ public class MaintenanceProductoServiceImpl implements MaintenanceProductoServic
     private CategoriasRepository categoriaRepository;
 
     @Override
+    //@Transactional(readOnly = true)
     public List<ProductoListarDto> listarProductos() {
         List<ProductoListarDto> dtos = new ArrayList<>();
         productoRepository.findAll().forEach(p -> dtos.add(new ProductoListarDto(
@@ -49,6 +51,7 @@ public class MaintenanceProductoServiceImpl implements MaintenanceProductoServic
     }
 
     @Override
+    //@Transactional(readOnly = true)
     public Optional<ProductoListarDto> listarProductoId(int id) {
         return productoRepository.findById(id).map(p -> new ProductoListarDto(
                 p.getIdProducto(),
@@ -65,6 +68,7 @@ public class MaintenanceProductoServiceImpl implements MaintenanceProductoServic
     }
 
     @Override
+    //@Transactional(readOnly = true)
     public boolean agregarProducto(ProductoCrearDto dto) throws Exception {
         // 1. Mapear DTO → entidad
         Producto p = new Producto();
@@ -92,6 +96,7 @@ public class MaintenanceProductoServiceImpl implements MaintenanceProductoServic
     }
 
     @Override
+    //@Transactional(readOnly = true)
     public boolean actualizarProducto(ProductoCrearDto producto) throws Exception {
         // 1. Buscar el producto existente
         Producto p = productoRepository.findById(producto.idProducto())
@@ -120,6 +125,7 @@ public class MaintenanceProductoServiceImpl implements MaintenanceProductoServic
     }
 
     @Override
+    //@Transactional(readOnly = true)
     public boolean borrarProductoId(int id) {
         Optional<Producto> optional = productoRepository.findById(id);
         return optional.map(p -> {
@@ -132,58 +138,6 @@ public class MaintenanceProductoServiceImpl implements MaintenanceProductoServic
     public List<ProductoBajoStockDTO> obtenerProductosBajoStock() {
         return productoRepository.findProductosBajoStock();
     }
-
-    /*@Override
-    public List<ProductoListarDto> listarProductos() {
-        List<ProductoListarDto> dtos = new ArrayList<>();
-        productoRepository.findAll().forEach(p -> dtos.add(new ProductoListarDto(
-                p.getIdProducto(), p.getNombreProducto(), p.getDescripcion(),
-                p.getStockActual(), p.getStockMinimo(), p.getEstado(), p.getCodigoPedido()
-        )));
-        return dtos;
-    }
-
-    @Override
-    public Optional<ProductoListarDto> listarProductoId(int id) {
-        return productoRepository.findById(id).map(p -> new ProductoListarDto(
-                p.getIdProducto(), p.getNombreProducto(), p.getDescripcion(),
-                p.getStockActual(), p.getStockMinimo(), p.getEstado(), p.getCodigoPedido()
-        ));
-    }
-
-    @Override
-    public boolean agregarProducto(ProductoCrearDto dto) {
-        Producto p = new Producto(null, dto.nombreProducto(), dto.descripcion(),
-                dto.stockActual(), dto.stockMinimo(), dto.estado(), null);
-        productoRepository.save(p);
-        return true;
-    }
-
-    @Override
-    public boolean actualizarProducto(ProductoCrearDto dto) {
-        Optional<Producto> optional = productoRepository.findById(dto.idProducto());
-        return optional.map(p -> {
-            p.setNombreProducto(dto.nombreProducto());
-            p.setDescripcion(dto.descripcion());
-            p.setStockActual(dto.stockActual());
-            p.setStockMinimo(dto.stockMinimo());
-            p.setEstado(dto.estado());
-            p.setCodigoPedido(dto.codigoPedido());
-            productoRepository.save(p);
-            return true;
-        }).orElse(false);
-    }
-
-    @Override
-    public boolean borrarProductoId(int id) {
-        Optional<Producto> optional = productoRepository.findById(id);
-        return optional.map(p -> {
-            productoRepository.delete(p);
-            return true;
-        }).orElse(false);
-    }
-    */
-
 
 }
 
